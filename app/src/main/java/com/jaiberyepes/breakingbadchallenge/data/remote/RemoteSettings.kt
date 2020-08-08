@@ -8,5 +8,5 @@ package com.jaiberyepes.breakingbadchallenge.data.remote
 object RemoteSettings {
 
     // End points
-    const val API_BASE_URL = "https://www.breakingbadapi.com/"
+    const val API_BASE_URL = "https://www.breakingbadapi.com/api/"
 }

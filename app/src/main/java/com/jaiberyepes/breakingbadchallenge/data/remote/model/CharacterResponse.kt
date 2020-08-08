@@ -5,7 +5,7 @@ import com.squareup.moshi.Json
 /**
  * Data class for Characters data entity (network DTO).
  *
- * @author juan.villada
+ * @author jaiber.yepes
  */
 class CharacterResponse(
 
