@@ -6,10 +6,10 @@ import retrofit2.http.GET
 /**
  * Interface that provides the Breaking Bad API End-Points.
  *
- * @author juan.villada
+ * @author jaiber.yepes
  */
 interface BreakingBadApi {
 
     @GET("characters")
-    suspend fun getRecipes(): List<CharacterResponse>
+    suspend fun getCharacters(): List<CharacterResponse>
 }
