@@ -22,4 +22,77 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <!-- Rating Style -->
+<!--    <style name="Rating" parent="@android:style/Widget.RatingBar">-->
+<!--        <item name="android:minHeight">32dip</item>-->
+<!--        <item name="android:minWidth">36dip</item>-->
+<!--        <item name="android:progressDrawable">@drawable/layer_list_rating</item>-->
+<!--    </style>-->
+
+    <!-- Loading Style -->
+    <style name="LoadingStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/colorLoadingOverlay</item>
+        <item name="android:paddingBottom">@dimen/margin_normal</item>
+        <item name="android:paddingStart">@dimen/margin_normal</item>
+        <item name="android:paddingEnd">@dimen/margin_normal</item>
+        <item name="android:paddingTop">@dimen/margin_normal</item>
+    </style>
+
+    <style name="ContentLoadingProgress">
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
+
+    <!-- TextView Style -->
+    <style name="TextView" parent="@android:style/Widget.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <!-- Title Text Style -->
+    <style name="TextView.Title" parent="TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">top|start</item>
+        <item name="android:layout_marginStart">@dimen/margin_normal</item>
+        <item name="android:layout_marginTop">@dimen/margin_small</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">start</item>
+        <item name="android:textSize">@dimen/title_text_size</item>
+    </style>
+
+    <!-- Extra Big Text Style -->
+    <style name="TextView.ExtraBig" parent="TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">@dimen/extra_big_text_size</item>
+    </style>
+
+    <!-- Big Text Style -->
+    <style name="TextView.Big" parent="TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">@dimen/big_text_size</item>
+    </style>
+
+    <!-- Medium Text Style -->
+    <style name="TextView.Medium" parent="TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">@dimen/medium_text_size</item>
+    </style>
+
+    <!-- Small Text Style -->
+    <style name="TextView.Small" parent="TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">@dimen/small_text_size</item>
+    </style>
+
 </resources>

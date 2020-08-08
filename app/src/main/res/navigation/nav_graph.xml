@@ -3,12 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph.xml"
-    app:startDestination="@id/charactersFragment"
-    tools:ignore="UnusedNavigation">
+    app:startDestination="@id/charactersFragment">
 
     <fragment
         android:id="@+id/charactersFragment"
         android:name="com.jaiberyepes.breakingbadchallenge.presentation.CharactersFragment"
         android:label="characters_fragment"
-        tools:layout="@layout/characters_fragment" />
+        tools:layout="@layout/fragment_characters" />
+
+
 </navigation>

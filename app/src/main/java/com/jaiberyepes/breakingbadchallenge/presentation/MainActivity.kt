@@ -1,7 +1,7 @@
 package com.jaiberyepes.breakingbadchallenge.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -10,9 +10,11 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.jaiberyepes.breakingbadchallenge.R
 import com.jaiberyepes.breakingbadchallenge.presentation.viewmodel.CharactersViewModel
+import com.jaiberyepes.breakingbadchallenge.presentation.viewmodel.CharactersViewModel.CharactersView
 import com.jaiberyepes.breakingbadchallenge.presentation.viewmodel.CharactersViewModelFactory
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.*
+import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -34,7 +36,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         findNavController(R.id.charactersNavHostFragment)
     }
 
-    private val onDestinationChangedListener = NavController.OnDestinationChangedListener { _, destination, arguments ->
+    private val onDestinationChangedListener = NavController.OnDestinationChangedListener { _, destination, _ ->
         when (destination.id) {
 //            R.id.characterDetailsFragment -> {
 //                toolbar.title = getText(R.string.character_details)
@@ -67,4 +69,23 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     override fun onSupportNavigateUp(): Boolean {
         return charactersNavController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+
+    private fun onCharactersViewChange(destination: CharactersViewModel.CharactersView) {
+        Timber.d("onCharactersViewChange")
+        when (destination) {
+            is CharactersView.CharactersFragment -> showCharactersFragment()
+//            is CharactersView.CharacterDetailsFragment -> showCharacterDetailsFragment(destination.characterUI)
+        }
+    }
+
+    private fun showCharactersFragment() {
+        Timber.d("showCharactersFragment")
+        charactersNavController.navigate(R.id.charactersFragment)
+    }
+
+//    private fun showCharacterDetailsFragment(characterUI: CharacterUI) {
+//        Timber.d("showCharacterDetailsFragment")
+//        val action = CharactersFragmentDirections.actionCharactersFragmentToCharacterDetailsFragment(characterUI)
+//        charactersNavController.navigate(action)
+//    }
 }
