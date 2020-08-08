@@ -10,7 +10,10 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.jaiberyepes.breakingbadchallenge.R
 import com.jaiberyepes.breakingbadchallenge.presentation.viewmodel.CharactersViewModel
+import com.jaiberyepes.breakingbadchallenge.presentation.viewmodel.CharactersViewModelFactory
+import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 /**
  * Activity for the Main Entry-Point.
@@ -20,6 +23,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     // ViewModel
+    @Inject
+    lateinit var charactersViewModelFactory: CharactersViewModelFactory
     private lateinit var charactersViewModel: CharactersViewModel
 
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -41,10 +46,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
 
         // ViewModel
-        charactersViewModel = ViewModelProvider(this)
+        charactersViewModel = ViewModelProvider(this, charactersViewModelFactory)
                 .get(CharactersViewModel::class.java)
     }
 

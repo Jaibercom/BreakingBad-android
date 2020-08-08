@@ -12,7 +12,7 @@ import javax.inject.Singleton
 /**
  * [Module] to provide network level dependencies.
  *
- * @author juan.villada
+ * @author jaiber.yepes
  */
 @Module(includes = [CoreNetworkModule::class])
 object NetworkModule {
