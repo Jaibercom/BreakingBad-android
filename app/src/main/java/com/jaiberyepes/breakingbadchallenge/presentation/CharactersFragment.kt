@@ -146,6 +146,6 @@ class CharactersFragment : Fragment(R.layout.fragment_characters), CharactersCon
     override fun onCharacterClicked(characterUI: CharacterUI) {
         Timber.d("onCharacterClicked")
         hideKeyboard()
-//        charactersViewModel.navigateTo()
+        charactersViewModel.navigateTo(CharactersViewModel.CharactersView.CharacterDetailsFragment(characterUI))
     }
 }

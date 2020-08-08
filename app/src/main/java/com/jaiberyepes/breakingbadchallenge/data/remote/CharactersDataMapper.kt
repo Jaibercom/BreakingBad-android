@@ -1,6 +1,8 @@
 package com.jaiberyepes.breakingbadchallenge.data.remote
 
+import com.jaiberyepes.breakingbadchallenge.data.remote.model.CharacterDetailResponse
 import com.jaiberyepes.breakingbadchallenge.data.remote.model.CharacterResponse
+import com.jaiberyepes.breakingbadchallenge.presentation.model.CharacterDetailsUI
 import com.jaiberyepes.breakingbadchallenge.presentation.model.CharacterUI
 import com.jaiberyepes.breakingbadchallenge.util.BaseMapper
 
@@ -11,8 +13,8 @@ import com.jaiberyepes.breakingbadchallenge.util.BaseMapper
  */
 object CharactersDataMapper {
 
-    object CharactersListRemoteToUI :
-        BaseMapper<List<CharacterResponse>, List<CharacterUI>> {
+    object CharactersListRemoteToUI : BaseMapper<List<CharacterResponse>, List<CharacterUI>> {
+
         override fun map(type: List<CharacterResponse>): List<CharacterUI> {
             return type.map {
                 CharacterUI(
@@ -22,5 +24,24 @@ object CharactersDataMapper {
                 )
             }
         }
+
+    }
+
+    object CharacterDetailsListRemoteToUI : BaseMapper<CharacterDetailResponse, CharacterDetailsUI> {
+
+        override fun map(type: CharacterDetailResponse): CharacterDetailsUI {
+            return with(type) {
+                CharacterDetailsUI(
+                    id = char_id,
+                    name = name,
+                    image = photo,
+                    nickName = nickname,
+                    occupation = occupation,
+                    status = status,
+                    portrayed = portrayed
+                )
+            }
+        }
+
     }
 }

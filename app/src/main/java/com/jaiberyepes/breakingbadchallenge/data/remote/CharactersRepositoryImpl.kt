@@ -1,6 +1,7 @@
 package com.jaiberyepes.breakingbadchallenge.data.remote
 
 import com.jaiberyepes.breakingbadchallenge.domain.repository.CharactersRepository
+import com.jaiberyepes.breakingbadchallenge.presentation.model.CharacterDetailsUI
 import com.jaiberyepes.breakingbadchallenge.presentation.model.CharacterUI
 import com.jaiberyepes.breakingbadchallenge.util.Output
 import timber.log.Timber
@@ -26,5 +27,9 @@ class CharactersRepositoryImpl @Inject constructor(
 //        }
 
         return dataSource.getCharacters()
+    }
+
+    override suspend fun getCharacterDetails(id: Int): Output<CharacterDetailsUI> {
+        return dataSource.getCharacterDetails(id)
     }
 }

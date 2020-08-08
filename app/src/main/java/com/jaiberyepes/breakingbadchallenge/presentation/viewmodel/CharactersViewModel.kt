@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jaiberyepes.breakingbadchallenge.R
 import com.jaiberyepes.breakingbadchallenge.domain.usescases.CharactersUseCases
+import com.jaiberyepes.breakingbadchallenge.presentation.model.CharacterDetailsUI
 import com.jaiberyepes.breakingbadchallenge.presentation.model.CharacterUI
 import com.jaiberyepes.breakingbadchallenge.util.Output
 import com.jaiberyepes.breakingbadchallenge.util.base.NavigationProvider
@@ -57,6 +58,19 @@ class CharactersViewModel @Inject constructor(
         }
     }
 
+    fun getCharacterDetails(id: Int) = viewModelScope.launch {
+        Timber.d("getCharacterDetails")
+        currentUIState.value = UIState.Loading()
+
+        val output = charactersUseCases.getCharacterDetails(id)
+        if (output is Output.Success) {
+            Timber.d("Character: $output.data")
+            currentUIState.value = UIState.Data(CharactersDataType.CharacterDetailsData(output.data))
+        } else {
+            currentUIState.value = UIState.Error(R.string.characters_error_message)
+        }
+    }
+
     sealed class CharactersView {
         object CharactersFragment : CharactersView()
         data class CharacterDetailsFragment(val characterUI: CharacterUI) : CharactersView()
@@ -64,6 +78,6 @@ class CharactersViewModel @Inject constructor(
 
     sealed class CharactersDataType {
         data class CharactersData(val characters: List<CharacterUI>) : CharactersDataType()
-//        data class CharacterDetailsData(val charactersDetails: CharacterDetailsUI) : CharactersDataType()
+        data class CharacterDetailsData(val charactersDetails: CharacterDetailsUI) : CharactersDataType()
     }
 }

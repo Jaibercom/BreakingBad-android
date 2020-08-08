@@ -1,5 +1,6 @@
 package com.jaiberyepes.breakingbadchallenge.data.remote
 
+import com.jaiberyepes.breakingbadchallenge.presentation.model.CharacterDetailsUI
 import com.jaiberyepes.breakingbadchallenge.presentation.model.CharacterUI
 import com.jaiberyepes.breakingbadchallenge.util.Output
 import kotlinx.coroutines.Dispatchers
@@ -22,6 +23,18 @@ class CharactersRemoteDataSource @Inject constructor(
             }
 
             val characters = CharactersDataMapper.CharactersListRemoteToUI.map(charactersResponse)
+            Output.success(characters)
+        } catch (e: Throwable) {
+            Output.error("Error retrieving the Characters list from remote: ${e.message}")
+        }
+
+    suspend fun getCharacterDetails(id: Int): Output<CharacterDetailsUI> =
+        try {
+            val characterResponse = withContext(Dispatchers.IO) {
+                breakingBadApi.getCharacterDetails(id)
+            }
+
+            val characters = CharactersDataMapper.CharacterDetailsListRemoteToUI.map(characterResponse)
             Output.success(characters)
         } catch (e: Throwable) {
             Output.error("Error retrieving the Characters list from remote: ${e.message}")
