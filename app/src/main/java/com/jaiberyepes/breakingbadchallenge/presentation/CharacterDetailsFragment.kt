@@ -8,9 +8,9 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.jaiberyepes.breakingbadchallenge.R
-import com.jaiberyepes.breakingbadchallenge.presentation.adapter.CharacterDetailsController
 import com.jaiberyepes.breakingbadchallenge.presentation.model.CharacterDetailsUI
 import com.jaiberyepes.breakingbadchallenge.presentation.viewmodel.CharactersViewModel
 import com.jaiberyepes.breakingbadchallenge.presentation.viewmodel.CharactersViewModel.CharactersDataType.CharacterDetailsData
@@ -18,8 +18,10 @@ import com.jaiberyepes.breakingbadchallenge.presentation.viewmodel.CharactersVie
 import com.jaiberyepes.breakingbadchallenge.util.base.UIState
 import com.jaiberyepes.breakingbadchallenge.util.extensions.gone
 import com.jaiberyepes.breakingbadchallenge.util.extensions.observe
+import com.jaiberyepes.breakingbadchallenge.util.extensions.setRoundCorners
 import com.jaiberyepes.breakingbadchallenge.util.extensions.visible
 import dagger.android.support.AndroidSupportInjection
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_character_details.*
 import timber.log.Timber
 import javax.inject.Inject
@@ -42,17 +44,9 @@ class CharacterDetailsFragment : Fragment(R.layout.fragment_character_details) {
         args.character
     }
 
-    // Epoxy controller
-    private val characterDetailsController: CharacterDetailsController by lazy {
-        CharacterDetailsController()
-    }
-
     // Loading
     private lateinit var loadingViewStub: ViewStub
     private var loadingInflated: View? = null
-
-    // ErrorBanner
-//    private lateinit var errorBanner: ErrorBanner
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -76,15 +70,8 @@ class CharacterDetailsFragment : Fragment(R.layout.fragment_character_details) {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        setupCharacterDetailsRecyclerView()
         observe(charactersViewModel.currentUIStateLiveData, ::onUIStateChange)
         charactersViewModel.getCharacterDetails(character.id)
-    }
-
-    private fun setupCharacterDetailsRecyclerView() = characterDetailsEpoxyRecyclerView.apply {
-        Timber.d("setupCharacterDetailsRecyclerView")
-        layoutManager = LinearLayoutManager(context)
-        setController(characterDetailsController)
     }
 
     private fun onUIStateChange(uiState: UIState<CharactersViewModel.CharactersDataType>) =
@@ -114,34 +101,27 @@ class CharacterDetailsFragment : Fragment(R.layout.fragment_character_details) {
 
     private fun showCharacterDetails(character: CharacterDetailsUI) {
         Timber.d("showCharacterDetailsList")
-        characterDetailsController.setData(character)
+
+        val toolbar = requireActivity().toolbar
+        toolbar.title = character.name
+
+        nickNameTextView.text = character.nickName
+        occupationTextView.text = character.occupation[0]
+        statusTextView.text = character.status
+        portrayedTextView.text = character.portrayed
+
+        Glide.with(characterImageView)
+            .load(character.image)
+            .apply(RequestOptions().placeholder(R.color.grayLight))
+            .into(characterImageView)
+        characterImageView.setRoundCorners(R.dimen.margin_x_small)
+
+        fab_favorite.visible()
     }
 
     private fun showError(@StringRes messageResId: Int) {
         Timber.d("showErrorBanner")
 
         loadingInflated?.gone()
-//        view?.let {
-//            errorBanner = ErrorBanner.make(
-//                it,
-//                R.string.general_error_title,
-//                messageResId,
-//                withRetry = true,
-//                withDismiss = false,
-//                errorBannerListener = this
-//            )
-//            errorBanner.show()
-//        }
     }
-
-//    override fun onErrorBannerDismiss() {
-//        Timber.d("onErrorBannerDismiss")
-//        errorBanner.dismiss()
-//    }
-//
-//    override fun onErrorBannerRetry() {
-//        Timber.d("onErrorBannerRetry")
-//        errorBanner.dismiss()
-//        charactersViewModel.getCharacters()
-//    }
 }

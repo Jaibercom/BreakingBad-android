@@ -6,4 +6,6 @@
 
     <color name="colorLoadingOverlay">#66ffffff</color>
     <color name="grayLight">#C9C9C9</color>
+    <color name="red">#F10404</color>
+    <color name="white">#FFFFFF</color>
 </resources>

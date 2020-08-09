@@ -21,4 +21,7 @@
 
     <!-- Character Error Messages -->
     <string name="character_details_error_message">We\'re having trouble loading the character details</string>
+    <string name="portrayed_message">Portrayed:</string>
+    <string name="status_message">Status:</string>
+    <string name="occupation_message">Occupation:</string>
 </resources>
