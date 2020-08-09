@@ -67,6 +67,7 @@ class CharactersViewModel @Inject constructor(
             Timber.d("Character: $output.data")
             currentUIState.value = UIState.Data(CharactersDataType.CharacterDetailsData(output.data))
         } else {
+            Timber.d("Character: error")
             currentUIState.value = UIState.Error(R.string.characters_error_message)
         }
     }

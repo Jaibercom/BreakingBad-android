@@ -20,17 +20,19 @@ object CharactersDataMapper {
                 CharacterUI(
                     id = it.char_id,
                     name = it.name,
-                    nickName = it.nickname
+                    nickName = it.nickname,
+                    image = it.image
                 )
             }
         }
 
     }
 
-    object CharacterDetailsListRemoteToUI : BaseMapper<CharacterDetailResponse, CharacterDetailsUI> {
+    object CharacterDetailsListRemoteToUI :
+        BaseMapper<List<CharacterDetailResponse>, CharacterDetailsUI> {
 
-        override fun map(type: CharacterDetailResponse): CharacterDetailsUI {
-            return with(type) {
+        override fun map(type: List<CharacterDetailResponse>): CharacterDetailsUI {
+            return with(type[0]) {
                 CharacterDetailsUI(
                     id = char_id,
                     name = name,

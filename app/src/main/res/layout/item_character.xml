@@ -16,19 +16,53 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/item_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="#757575"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
-            android:id="@+id/titleTextView"
-            style="@style/TextView.Big"
-            android:layout_width="match_parent"
+            android:id="@+id/item_name"
+            style="@style/AppTheme.Subheader"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_small"
             android:layout_marginEnd="@dimen/margin_normal"
             android:ellipsize="end"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/item_image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Name" />
+
+        <TextView
+            android:id="@+id/item_nick_name"
+            style="@style/AppTheme.Body1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_normal"
+            android:ellipsize="end"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/item_image"
+            app:layout_constraintTop_toBottomOf="@id/item_name"
+            tools:text="Item" />
+
+        <ImageView
+            android:id="@+id/item_favorite"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="@dimen/margin_normal"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_baseline_favorite_border_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Item" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

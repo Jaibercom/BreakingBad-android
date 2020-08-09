@@ -12,5 +12,6 @@ import kotlinx.android.parcel.Parcelize
 data class CharacterUI(
     val id: Int,
     val name: String,
-    val nickName: String
+    val nickName: String,
+    val image: String
 ) : Parcelable

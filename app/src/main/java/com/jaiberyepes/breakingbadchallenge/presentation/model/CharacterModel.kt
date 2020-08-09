@@ -1,13 +1,17 @@
 package com.jaiberyepes.breakingbadchallenge.presentation.model
 
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyHolder
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.jaiberyepes.breakingbadchallenge.R
 import com.jaiberyepes.breakingbadchallenge.presentation.adapter.CharactersController
+import com.jaiberyepes.breakingbadchallenge.util.extensions.setRoundCorners
 
 /**
  * EpoxyModelClass for the Character list.
@@ -23,7 +27,14 @@ abstract class CharacterModel : EpoxyModelWithHolder<CharacterModel.CharactersHo
     lateinit var characterClickedListener: CharactersController.CharacterClickedListener
 
     override fun bind(holder: CharactersHolder) = with(holder) {
-        titleTextView.text = characterUI.name
+        nameView.text = characterUI.name
+        nickNameView.text = characterUI.nickName
+
+        Glide.with(imageView)
+            .load(characterUI.image)
+            .apply(RequestOptions().placeholder(R.color.grayLight))
+            .into(holder.imageView)
+        imageView.setRoundCorners(R.dimen.margin_x_small)
 
         container.setOnClickListener {
             characterClickedListener.onCharacterClicked(characterUI)
@@ -32,11 +43,15 @@ abstract class CharacterModel : EpoxyModelWithHolder<CharacterModel.CharactersHo
 
     inner class CharactersHolder : EpoxyHolder() {
 
-        lateinit var titleTextView: TextView
+        lateinit var nameView: TextView
+        lateinit var nickNameView: TextView
+        lateinit var imageView: ImageView
         lateinit var container: View
 
         override fun bindView(itemView: View) {
-            titleTextView = itemView.findViewById(R.id.titleTextView)
+            nameView = itemView.findViewById(R.id.item_name)
+            nickNameView = itemView.findViewById(R.id.item_nick_name)
+            imageView = itemView.findViewById(R.id.item_image)
             container = itemView
         }
     }

@@ -3,7 +3,7 @@ package com.jaiberyepes.breakingbadchallenge.data.remote.model
 import com.squareup.moshi.Json
 
 /**
- * Data class for Characters data entity (network DTO).
+ * Data class for Character Detail data entity (network DTO).
  *
  * @author jaiber.yepes
  */

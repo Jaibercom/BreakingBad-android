@@ -13,7 +13,7 @@ class CharacterResponse(
     @field:Json(name = "name") val name: String,
 //    @field:Json(name = "birthday") val birthday: String,
 //    @field:Json(name = "occupation") val occupation: List<String>,
-//    @field:Json(name = "img") val photo: String,
+    @field:Json(name = "img") val image: String,
 //    @field:Json(name = "status") val status: String,
     @field:Json(name = "nickname") val nickname: String
 //    @field:Json(name = "appearance") val appearance: List<Int>,

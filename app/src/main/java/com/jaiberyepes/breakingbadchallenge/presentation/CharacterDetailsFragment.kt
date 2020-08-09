@@ -8,6 +8,7 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.jaiberyepes.breakingbadchallenge.R
 import com.jaiberyepes.breakingbadchallenge.presentation.adapter.CharacterDetailsController
 import com.jaiberyepes.breakingbadchallenge.presentation.model.CharacterDetailsUI
@@ -19,6 +20,7 @@ import com.jaiberyepes.breakingbadchallenge.util.extensions.gone
 import com.jaiberyepes.breakingbadchallenge.util.extensions.observe
 import com.jaiberyepes.breakingbadchallenge.util.extensions.visible
 import dagger.android.support.AndroidSupportInjection
+import kotlinx.android.synthetic.main.fragment_character_details.*
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -74,16 +76,16 @@ class CharacterDetailsFragment : Fragment(R.layout.fragment_character_details) {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-//        setupCharacterDetailsRecyclerView()
+        setupCharacterDetailsRecyclerView()
         observe(charactersViewModel.currentUIStateLiveData, ::onUIStateChange)
         charactersViewModel.getCharacterDetails(character.id)
     }
 
-//    private fun setupCharacterDetailsRecyclerView() = characterDetailsEpoxyRecyclerView.apply {
-//        Timber.d("setupCharacterDetailsRecyclerView")
-//        layoutManager = LinearLayoutManager(context)
-//        setController(characterDetailsController)
-//    }
+    private fun setupCharacterDetailsRecyclerView() = characterDetailsEpoxyRecyclerView.apply {
+        Timber.d("setupCharacterDetailsRecyclerView")
+        layoutManager = LinearLayoutManager(context)
+        setController(characterDetailsController)
+    }
 
     private fun onUIStateChange(uiState: UIState<CharactersViewModel.CharactersDataType>) =
         when (uiState) {
