@@ -56,6 +56,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         // ViewModel
         charactersViewModel = ViewModelProvider(this, charactersViewModelFactory)
                 .get(CharactersViewModel::class.java)
+        charactersViewModel.getCharacters()
         observe(charactersViewModel.currentViewLiveData, ::onCharactersViewChange)
     }
 

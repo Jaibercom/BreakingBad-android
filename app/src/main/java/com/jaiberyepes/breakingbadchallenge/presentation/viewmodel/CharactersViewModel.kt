@@ -37,14 +37,14 @@ class CharactersViewModel @Inject constructor(
     private var characters: List<CharacterUI> = listOf()
 
     init {
-        getCharacters()
+//        getCharacters()
     }
 
     override fun navigateTo(destinationView: CharactersView) {
         currentView.value = destinationView
     }
 
-    private fun getCharacters() = viewModelScope.launch {
+    fun getCharacters() = viewModelScope.launch {
         Timber.d("getCharacters")
         currentUIState.value = UIState.Loading()
 
