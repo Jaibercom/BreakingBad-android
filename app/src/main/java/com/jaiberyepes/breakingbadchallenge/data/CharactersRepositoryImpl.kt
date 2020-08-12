@@ -22,7 +22,7 @@ class CharactersRepositoryImpl @Inject constructor(
     override suspend fun getCharacters(): Output<List<CharacterUI>> {
         Timber.d("getCharacters")
 
-        val charactersCache = cacheDataSource.getCharacters()
+        val charactersCache = cacheDataSource.getCharactersWithFavorites()
         if (charactersCache is Output.Success) {
             Timber.d("get Characters from local database")
             if (charactersCache.data.isNotEmpty()){

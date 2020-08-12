@@ -14,7 +14,7 @@ data class CharacterDetailsUI(
     val name: String,
     val nickName: String,
     val image: String,
-    var isFavorite: Boolean = false,
+    var isFavorite: Boolean,
     val occupation: List<String>,
     val status: String,
     val portrayed: String

@@ -67,9 +67,14 @@ class CharacterDetailsFragment : Fragment(R.layout.fragment_character_details) {
         loadingViewStub = view.findViewById(R.id.characterDetailsLoadingViewStub)
 
         characterFavorite.setOnClickListener {
-//            character.isFavorite = !character.isFavorite
-//            charactersViewModel.updateFavorite(character)
+            onCharacterFavoriteClicked()
         }
+    }
+
+    private fun onCharacterFavoriteClicked() {
+        Timber.d("onCharacterFavoriteClicked")
+        charactersViewModel.updateFavorite()
+        charactersViewModel.navigateTo(CharactersViewModel.CharactersView.CharactersFragment)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -120,6 +125,12 @@ class CharacterDetailsFragment : Fragment(R.layout.fragment_character_details) {
             .apply(RequestOptions().placeholder(R.color.grayLight))
             .into(characterImageView)
         characterImageView.setRoundCorners(R.dimen.margin_x_small)
+
+        if (character.isFavorite) {
+            characterFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
+        } else {
+            characterFavorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+        }
 
         characterFavorite.visible()
     }

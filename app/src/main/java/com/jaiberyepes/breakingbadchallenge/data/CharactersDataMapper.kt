@@ -41,7 +41,8 @@ object CharactersDataMapper {
                     nickName = nickname,
                     occupation = occupation,
                     status = status,
-                    portrayed = portrayed
+                    portrayed = portrayed,
+                    isFavorite = false
                 )
             }
         }
@@ -60,7 +61,8 @@ object CharactersDataMapper {
                     nickName = nickName,
                     occupation = listOf(occupation),
                     status = status,
-                    portrayed = portrayed
+                    portrayed = portrayed,
+                    isFavorite = isFavorite
                 )
             }
         }
@@ -118,7 +120,7 @@ object CharactersDataMapper {
 
     }
 
-    object CharacterUIToCache : BaseMapper<CharacterDetailsUI, CharacterEntity> {
+    object CharacterDetailsUIToCache : BaseMapper<CharacterDetailsUI, CharacterEntity> {
 
         override fun map(type: CharacterDetailsUI): CharacterEntity {
             return with(type) {

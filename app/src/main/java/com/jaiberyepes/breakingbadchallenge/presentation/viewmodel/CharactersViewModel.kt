@@ -36,6 +36,8 @@ class CharactersViewModel @Inject constructor(
 
     private var characters: List<CharacterUI> = listOf()
 
+    private lateinit var character: CharacterDetailsUI
+
 
     override fun navigateTo(destinationView: CharactersView) {
         currentView.value = destinationView
@@ -61,6 +63,7 @@ class CharactersViewModel @Inject constructor(
 
         val output = charactersUseCases.getCharacterDetails(id)
         if (output is Output.Success) {
+            character = output.data
             Timber.d("Character: $output.data")
             currentUIState.value = UIState.Data(CharactersDataType.CharacterDetailsData(output.data))
         } else {
@@ -69,8 +72,9 @@ class CharactersViewModel @Inject constructor(
         }
     }
 
-    fun updateFavorite(characterUI: CharacterDetailsUI) = viewModelScope.launch {
-        charactersUseCases.updateCharacter(characterUI)
+    fun updateFavorite() = viewModelScope.launch {
+        character.isFavorite = !character.isFavorite
+        charactersUseCases.updateCharacter(character)
     }
 
     sealed class CharactersView {

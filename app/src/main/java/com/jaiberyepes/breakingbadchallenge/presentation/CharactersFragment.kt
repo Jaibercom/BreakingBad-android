@@ -29,7 +29,8 @@ import javax.inject.Inject
  *
  * @author jaiber.yepes
  */
-class CharactersFragment : Fragment(R.layout.fragment_characters), CharactersController.CharacterClickedListener{
+class CharactersFragment : Fragment(R.layout.fragment_characters),
+    CharactersController.CharacterClickedListener {
 
     //ViewModel
     @Inject
@@ -58,7 +59,10 @@ class CharactersFragment : Fragment(R.layout.fragment_characters), CharactersCon
         super.onCreate(savedInstanceState)
 
         // ViewModel
-        charactersViewModel = ViewModelProvider(requireActivity(), charactersViewModelFactory).get(CharactersViewModel::class.java)
+        charactersViewModel = ViewModelProvider(
+            requireActivity(),
+            charactersViewModelFactory
+        ).get(CharactersViewModel::class.java)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -72,6 +76,7 @@ class CharactersFragment : Fragment(R.layout.fragment_characters), CharactersCon
         super.onActivityCreated(savedInstanceState)
 
         setupCharactersRecyclerView()
+        charactersViewModel.getCharacters()
         observe(charactersViewModel.currentUIStateLiveData, ::onUIStateChange)
     }
 
@@ -121,31 +126,21 @@ class CharactersFragment : Fragment(R.layout.fragment_characters), CharactersCon
 
         loadingInflated?.gone()
 
-        if (messageResId == R.string.characters_search_error_message) {
-            if (noResultsInflated == null) {
-                noResultsInflated = noResultsViewStub.inflate()
-            }
-
-            charactersController.setData(listOf())
-            noResultsInflated?.visible()
-        } else {
-            view?.let {
-//                errorBanner = ErrorBanner.make(
-//                    it,
-//                    R.string.general_error_title,
-//                    messageResId,
-//                    withRetry = true,
-//                    withDismiss = false,
-//                    errorBannerListener = this
-//                )
-//                errorBanner.show()
-            }
+        if (noResultsInflated == null) {
+            noResultsInflated = noResultsViewStub.inflate()
         }
+
+        charactersController.setData(listOf())
+        noResultsInflated?.visible()
     }
 
     override fun onCharacterClicked(characterUI: CharacterUI) {
         Timber.d("onCharacterClicked")
         hideKeyboard()
-        charactersViewModel.navigateTo(CharactersViewModel.CharactersView.CharacterDetailsFragment(characterUI.id))
+        charactersViewModel.navigateTo(
+            CharactersViewModel.CharactersView.CharacterDetailsFragment(
+                characterUI.id
+            )
+        )
     }
 }

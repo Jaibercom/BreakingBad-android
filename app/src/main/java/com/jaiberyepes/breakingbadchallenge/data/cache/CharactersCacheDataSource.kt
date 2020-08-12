@@ -21,7 +21,7 @@ class CharactersCacheDataSource @Inject constructor(
         charactersDao.insertCharacters(characters)
 
     suspend fun updateCharacter(character: CharacterDetailsUI) =
-        charactersDao.updateCharacter(CharactersDataMapper.CharacterUIToCache.map(character))
+        charactersDao.updateCharacter(CharactersDataMapper.CharacterDetailsUIToCache.map(character))
 
     suspend fun getCharacterId(id: Int): Output<CharacterDetailsUI> =
         Output.success(CharactersDataMapper.CharacterDetailsCacheToUI.map(charactersDao.getCharacterById(id)))

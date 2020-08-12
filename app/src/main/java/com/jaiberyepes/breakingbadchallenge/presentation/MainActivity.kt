@@ -9,8 +9,6 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.jaiberyepes.breakingbadchallenge.R
-import com.jaiberyepes.breakingbadchallenge.presentation.model.CharacterDetailsUI
-import com.jaiberyepes.breakingbadchallenge.presentation.model.CharacterUI
 import com.jaiberyepes.breakingbadchallenge.presentation.viewmodel.CharactersViewModel
 import com.jaiberyepes.breakingbadchallenge.presentation.viewmodel.CharactersViewModel.CharactersView
 import com.jaiberyepes.breakingbadchallenge.presentation.viewmodel.CharactersViewModelFactory
@@ -57,7 +55,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         // ViewModel
         charactersViewModel = ViewModelProvider(this, charactersViewModelFactory)
                 .get(CharactersViewModel::class.java)
-        charactersViewModel.getCharacters()
         observe(charactersViewModel.currentViewLiveData, ::onCharactersViewChange)
     }
 
