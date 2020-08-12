@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BreakingBadChallenge</string>
+    <string name="app_name">BreakingBad</string>
 
     <!-- Loading Messages -->
     <string name="general_loading_message">Loading</string>
