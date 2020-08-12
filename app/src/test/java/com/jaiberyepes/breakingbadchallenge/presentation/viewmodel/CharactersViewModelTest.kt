@@ -85,7 +85,7 @@ class CharactersViewModelTest {
     @Test
     fun `Success with UiState when getCharacterDetails`() {
         // Given
-        val character = CharacterDetailsUI(1, CHARACTER_1_NAME, CHARACTER_1_NICKNAME, "",
+        val character = CharacterDetailsUI(1, CHARACTER_1_NAME, CHARACTER_1_NICKNAME, "", false,
             listOf(CHARACTER_1_OCCUPATION1, CHARACTER_1_OCCUPATION2), CHARACTER_1_STATUS, "")
 
         coEvery { charactersUseCases.getCharacterDetails(1) } returns Output.success(character)

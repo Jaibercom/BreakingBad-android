@@ -9,6 +9,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.jaiberyepes.breakingbadchallenge.R
+import com.jaiberyepes.breakingbadchallenge.presentation.model.CharacterDetailsUI
 import com.jaiberyepes.breakingbadchallenge.presentation.model.CharacterUI
 import com.jaiberyepes.breakingbadchallenge.presentation.viewmodel.CharactersViewModel
 import com.jaiberyepes.breakingbadchallenge.presentation.viewmodel.CharactersViewModel.CharactersView
@@ -78,7 +79,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         Timber.d("onCharactersViewChange")
         when (destination) {
             is CharactersView.CharactersFragment -> showCharactersFragment()
-            is CharactersView.CharacterDetailsFragment -> showCharacterDetailsFragment(destination.characterUI)
+            is CharactersView.CharacterDetailsFragment -> showCharacterDetailsFragment(destination.id)
         }
     }
 
@@ -87,9 +88,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         charactersNavController.navigate(R.id.charactersFragment)
     }
 
-    private fun showCharacterDetailsFragment(characterUI: CharacterUI) {
+    private fun showCharacterDetailsFragment(id: Int) {
         Timber.d("showCharacterDetailsFragment")
-        val action = CharactersFragmentDirections.actionCharactersFragmentToCharacterDetailsFragment(characterUI)
+        val action = CharactersFragmentDirections.actionCharactersFragmentToCharacterDetailsFragment(id)
         charactersNavController.navigate(action)
     }
 }

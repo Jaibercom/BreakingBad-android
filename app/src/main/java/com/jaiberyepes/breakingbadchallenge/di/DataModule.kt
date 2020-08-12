@@ -1,6 +1,6 @@
 package com.jaiberyepes.breakingbadchallenge.di
 
-import com.jaiberyepes.breakingbadchallenge.data.remote.CharactersRepositoryImpl
+import com.jaiberyepes.breakingbadchallenge.data.CharactersRepositoryImpl
 import com.jaiberyepes.breakingbadchallenge.domain.repository.CharactersRepository
 import dagger.Binds
 import dagger.Module
@@ -12,8 +12,8 @@ import dagger.Module
  */
 @Module(
     includes = [
-        NetworkModule::class
-//        CacheModule::class
+        NetworkModule::class,
+        CacheModule::class
     ]
 )
 abstract class DataModule {

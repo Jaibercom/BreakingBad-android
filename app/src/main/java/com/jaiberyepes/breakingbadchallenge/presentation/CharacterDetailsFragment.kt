@@ -40,7 +40,7 @@ class CharacterDetailsFragment : Fragment(R.layout.fragment_character_details) {
 
     // Navigation
     private val args: CharacterDetailsFragmentArgs by navArgs()
-    private val character by lazy {
+    private val characterId: Int by lazy {
         args.character
     }
 
@@ -65,13 +65,18 @@ class CharacterDetailsFragment : Fragment(R.layout.fragment_character_details) {
         super.onViewCreated(view, savedInstanceState)
 
         loadingViewStub = view.findViewById(R.id.characterDetailsLoadingViewStub)
+
+        characterFavorite.setOnClickListener {
+//            character.isFavorite = !character.isFavorite
+//            charactersViewModel.updateFavorite(character)
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         observe(charactersViewModel.currentUIStateLiveData, ::onUIStateChange)
-        charactersViewModel.getCharacterDetails(character.id)
+        charactersViewModel.getCharacterDetails(characterId)
     }
 
     private fun onUIStateChange(uiState: UIState<CharactersViewModel.CharactersDataType>) =
@@ -116,7 +121,7 @@ class CharacterDetailsFragment : Fragment(R.layout.fragment_character_details) {
             .into(characterImageView)
         characterImageView.setRoundCorners(R.dimen.margin_x_small)
 
-        fab_favorite.visible()
+        characterFavorite.visible()
     }
 
     private fun showError(@StringRes messageResId: Int) {

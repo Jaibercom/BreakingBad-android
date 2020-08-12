@@ -1,5 +1,7 @@
 package com.jaiberyepes.breakingbadchallenge.data.remote
 
+import com.jaiberyepes.breakingbadchallenge.data.CharactersDataMapper
+import com.jaiberyepes.breakingbadchallenge.data.remote.model.CharacterResponse
 import com.jaiberyepes.breakingbadchallenge.presentation.model.CharacterDetailsUI
 import com.jaiberyepes.breakingbadchallenge.presentation.model.CharacterUI
 import com.jaiberyepes.breakingbadchallenge.util.Output
@@ -16,14 +18,14 @@ class CharactersRemoteDataSource @Inject constructor(
     private val breakingBadApi: BreakingBadApi
 ) {
 
-    suspend fun getCharacters(): Output<List<CharacterUI>> =
+    suspend fun getCharacters(): Output<List<CharacterResponse>> =
         try {
             val charactersResponse = withContext(Dispatchers.IO) {
                 breakingBadApi.getCharacters()
             }
 
-            val characters = CharactersDataMapper.CharactersListRemoteToUI.map(charactersResponse)
-            Output.success(characters)
+//            val characters = CharactersDataMapper.CharactersListRemoteToUI.map(charactersResponse)
+            Output.success(charactersResponse)
         } catch (e: Throwable) {
             Output.error("Error retrieving the Characters list from remote: ${e.message}")
         }

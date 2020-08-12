@@ -36,9 +36,6 @@ class CharactersViewModel @Inject constructor(
 
     private var characters: List<CharacterUI> = listOf()
 
-    init {
-//        getCharacters()
-    }
 
     override fun navigateTo(destinationView: CharactersView) {
         currentView.value = destinationView
@@ -72,9 +69,13 @@ class CharactersViewModel @Inject constructor(
         }
     }
 
+    fun updateFavorite(characterUI: CharacterDetailsUI) = viewModelScope.launch {
+        charactersUseCases.updateCharacter(characterUI)
+    }
+
     sealed class CharactersView {
         object CharactersFragment : CharactersView()
-        data class CharacterDetailsFragment(val characterUI: CharacterUI) : CharactersView()
+        data class CharacterDetailsFragment(val id: Int) : CharactersView()
     }
 
     sealed class CharactersDataType {
