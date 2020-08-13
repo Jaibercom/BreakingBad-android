@@ -1,39 +1,42 @@
 # BreakingBad-android
+Android application usign Kotlin language that displays the list of Breaking Bad Characters using a publicly available 
+REST API on the web. Clicking on a character opens a simple detail screen with more information about the character.
 
-## Description
-Breaking bad Android is a project that uses a modern approach to Android application development using Kotlin 
-and the latest tech-stack.
-
-Views:
-- Splash with logo
-- Characters list 
-- Character details
 
 ## Architecture
-Clean Architecture with MVVM using Repository Pattern
+Clean Architecture with MVVM using Repository Pattern.
+The project is using packages presentation, domain and data.
 
-## Languages, libraries and tools used
+- The Presentation package is using MVVM with live data.
+- The Domain package has all the Use Cases & Repositories.
+- The Data package is using the Repository Pattern to get data from Remote and/or from Cache.
+
+
+## Language
 - Kotlin
+
+
+## Libraries 
+- Android Architecture Components: 
+	- Navigation
+	- ViewModel
+	- LiveData
+	- Room
 - Kotlin Coroutines
-- Android Architecture Components
+- Dagger-Android
 - Epoxy
-- Dagger Android
-- Room
 - OkHttp
 - Retrofit
 - Moshi
+- Espresso
 - Mockito
 - JUnit4
 
-## Project Structure
-The project is using Clean Architecture with packages presentation, domain and data.
 
-- The presentation package is using MVVM with live data.
-- The domain package has all the Use Cases & Repositories.
-- The data package is using the Repository Pattern to get data from Remote and/or from Cache.
+## Author 
 
-### Who do I talk to? ###
+* **Jaiber Yepes** - [jaibercom](https://github.com/jaibercom)
 
-* Jaiber Yepes 
-* jaibercom@gmail.com
+
+
 
