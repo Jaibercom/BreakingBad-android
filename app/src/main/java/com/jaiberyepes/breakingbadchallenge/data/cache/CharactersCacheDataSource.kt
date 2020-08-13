@@ -9,7 +9,7 @@ import com.jaiberyepes.breakingbadchallenge.util.Output
 import javax.inject.Inject
 
 /**
- * Recipes related cache DataSource.
+ * Characters related cache DataSource.
  *
  * @author jaiber.yepes
  */

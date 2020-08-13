@@ -13,7 +13,7 @@ import com.jaiberyepes.breakingbadchallenge.data.cache.database.entities.Charact
 interface CharactersDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCharacters(recipes: List<CharacterEntity>)
+    suspend fun insertCharacters(characters: List<CharacterEntity>)
 
     @Update
     suspend fun updateCharacter(character: CharacterEntity)
